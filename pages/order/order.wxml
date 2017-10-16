@@ -1,0 +1,11 @@
+<scroll-view class="orderScrollVie" sroll-y="true">
+  <block wx:for="{{orders}}">
+    <view class="orderItem">
+      <image class="orderImage" src="{{item.image}}" mode="aspectFix"></image>
+      <text class="orderText">{{item.name}}</text>
+      <text class="orderNum">X{{item.orderNum}}</text>
+      <text class="orderPrice">{{item.price}}</text>
+    </view>
+  </block>
+
+</scroll-view>

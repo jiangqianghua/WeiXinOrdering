@@ -1,0 +1,14 @@
+<!--my.wxml-->
+<scroll-view class="myScrollView" scroll-y="true">
+  <view class="headImage">
+    <text>头像</text>
+    <image src=""></image>
+    <text>go</text>
+  </view>
+  <view class="userNme">
+  </view>
+  <view class="score">
+  </view>
+  <view class="iphone">
+  </view>
+</scroll-view>

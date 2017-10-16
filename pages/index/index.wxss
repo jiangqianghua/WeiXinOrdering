@@ -1,0 +1,76 @@
+/**index.wxss**/
+/**
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+**/
+.scrollViewMain{
+  width:100%;
+  heigth:100%;
+}
+.headView {
+  margin-top: 1rpx;
+  margin-left: 1rpx;
+  margin-right: 1rpx;
+  height: 300rpx;
+  background-image: url("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png")
+}
+
+.midView {
+  margin-top: 1rpx;
+  margin-left: 1rpx;
+  margin-right: 1rpx;
+  height: 400rpx;
+
+  background-color:beige;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.bottomView {
+  margin-left: 1rpx;
+  margin-right: 1rpx;
+  height: 300rpx;
+}
+
+
+.tapview {
+  margin-left: 1rpx;
+  margin-right: 1rpx;
+  margin-top: 300rpx;
+}
+.userOperate{
+  margin:45rpx;
+  width: 120rpx;
+  height: 60rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center
+}
+
+.userOperateImage{
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.userOperateText{
+  font-size: 30rpx
+}

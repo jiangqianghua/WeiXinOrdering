@@ -1,0 +1,36 @@
+/* my.wxss */
+.myScrollView{
+  flex-direction: column;
+  display: flex ; 
+}
+
+.headImage{
+  flex-direction: row;
+  display: flex;
+  background-color: rebeccapurple;
+  width: 100%;
+  height: 100rpx;
+}
+.userNme{
+  flex-direction: row;
+  display: flex;
+  background-color: orangered;
+    width: 100%;
+  height: 100rpx;
+}
+
+.score{
+  flex-direction: row;
+  display: flex;
+  background-color:royalblue;
+    width: 100%;
+  height: 100rpx;
+}
+
+.iphone{
+  flex-direction: row;
+  display: flex;
+  background-color: sandybrown;
+    width: 100%;
+  height: 100rpx;
+}
