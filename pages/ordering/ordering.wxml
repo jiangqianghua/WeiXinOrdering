@@ -1,48 +1,27 @@
-<scroll-view  sroll-y="true" class="orderingScrollView">
-  <view class="orderingView">
-    <scroll-view class="leftView">
-      <block wx:for="{{mealType}}">
-          <view>
-            <text data-mealtype="{{item.id}}"  bindtap="mealTypeClick">
-            {{item.name}}
-            </text>
-          </view>
-      </block>
-    </scroll-view>
-    <scroll-view class="rightview">
-       <block wx:for="{{mealinfo}}">
-          <view class="orderingfo">
-            <image class="orderingImage" src="{{item.image}}">
-            </image>
-            <view class="middleinfo">
-               <text class="mealName" data-mealtype="{{item.id}}"  bindtap="mealTypeClick">
-            {{item.name}}
-              </text>
-              <text class="monthlyScalesNum">
-              月售{{item.mothlyScalesNum}}
-              </text>
-              <text class="onlineScaleNum">
-                在线销售分数{{item.onlineScaleNum}}
-              </text>
-
-              <view class="orderingPriceView">
-                <text class="orderingRenjun">
-                人均 
-                </text>
-                <text class="orderingPrice">
-                  ¥{{item.price}}
-                </text>
-              </view>
-            </view>
-           <view class="selectMealVie">
-              <text clss="select1">-</text>
-                            <view class="blockView1"></view>
-              <text clss="select2"> 2</text>
-              <view class="blockView2"></view>
-              <text clss="select3">+</text>
-           </view>
-          </view>
-      </block>
-    </scroll-view>
+<view class="container">
+<view class="productInfoTop">
+  <view class="leftView">
+    <view wx:key="productList" wx:for="{{productList}}">
+      <view class="productTypeNameView {{item.isSelected?'typeSelected':'typeUnSelected'}}" bindtap='bindTapType' data-producttype="{{item.type}}" >
+        <text class="productTypeNameText">{{item.name}}</text>
+      </view>
+      <view class="line"></view>
+    </view>
   </view>
-</scroll-view>
+  <scroll-view class="rightView" scroll-y>
+    <view wx:for="{{currentProductist}}" wx:key="currentProductist" class="currentProductItem">
+      <image src='{{item.icon}}' class="currentProductItemIcon" mode="widthFix"></image>
+      <view class="currentProductItemLeft"> 
+      <text class="currentProductItemLeftName">{{item.name}}</text>
+      <text class="currentProductItemLeftDesc">{{item.description}}</text>
+      <view class="currentProductItemLeftOper">
+        <text class="currentProductItemLeftOperPrice">¥{{item.price}}
+        </text>
+        <image class="addImage" src="../../images/add.png"></image>
+      </view>
+      </view>
+    </view>
+  </scroll-view>
+  </view>
+  <view class="bottomTools"></view>
+</view>

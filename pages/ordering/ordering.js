@@ -1,7 +1,8 @@
 // ordering.js
 
 var util = require('../../utils/util.js');
-var app = getApp()
+var app = getApp();
+var defaultIndex = 1 ;
 Page({
 
   /**
@@ -9,106 +10,68 @@ Page({
    */
   data: {
   
-    mealType:[{
-      id:"1",
-      name:"包子",
-      },
-      {
-        id: "2",
-        name: "汤类",
-      },
-      {
-        id: "3",
-        name: "硬菜",
-      }],
-
-      mealinfo:{}
-      
+    productList:[],
+    currentProductist:[]
   },
-
   requestMealCallBack:function(data){
     console.log('requestMealCallBack ' + data);
   },
 
-  mealTypeClick:function(event){
-   // console.log(event.target);
-    var mealTypeId = event.target.dataset.mealtype ;
-    util.req(
-    "http://127.0.0.1:8080/Shop/shop/allFoods",
-    { "shopId": mealTypeId }, 
-    null,
-    "post"
-     );
-    /** 
-    var mealinfo = [{
-      image:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-      name:"酱香包子",
-      mothlyScalesNum:"20",
-      onlineScaleNum:"8",
-      price:"20"
-    },{
-        image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-        name: "猪肉大葱大脖子包子",
-        mothlyScalesNum: "20",
-        onlineScaleNum: "3",
-        price: "20"
-    },{
-        image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-        name: "传统包子",
-        mothlyScalesNum: "20",
-        onlineScaleNum: "38",
-        price: "20"
-    }, {
-      image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-      name: "传统包子",
-      mothlyScalesNum: "20",
-      onlineScaleNum: "38",
-      price: "20"
-    }
-      , {
-      image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-      name: "传统包子",
-      mothlyScalesNum: "20",
-      onlineScaleNum: "38",
-      price: "20"
-    }
-      , {
-        image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-        name: "传统包子",
-        mothlyScalesNum: "20",
-        onlineScaleNum: "38",
-        price: "20"
-      }
-      , {
-        image: "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1498247596883&di=65625165d691a52a0563927ed4d7b115&imgtype=0&src=http%3A%2F%2Fimgup.100ye.com%2Fmnt%2Fimg2%2F0%2F1%2F77%2F1577%2Fnewsimage%2Fb8afd964938565cc518909b853bcdcac.png",
-        name: "传统包子",
-        mothlyScalesNum: "20",
-        onlineScaleNum: "38",
-        price: "20"
-      }
-    ];
-    
-  //  console.log("---" + mealinfo);
-    this.setData({
-      mealinfo:mealinfo
-    });
-    **/
-
-  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+ 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    let that = this ;
+    util.req(
+"http://192.168.1.102:8085/sell/buyer/product/list",
+      '',
+      function (data) {
+        //console.log(data);
+        let dataArr = data.data;
+        let currentProductist1 = [];
+        for(let i = 0 ; i < dataArr.length ; i++){
+          if(i == defaultIndex){
+            dataArr[i]['isSelected'] = true;
+            currentProductist1 = dataArr[i]['foods'];
+            }
+          else
+            dataArr[i]['isSelected'] = false;
+        }
+
+        that.setData({
+          productList: dataArr,
+          currentProductist: currentProductist1
+        });
+      },
+      "get"
+    );
   },
 
+  bindTapType:function(event){
+    let currentProductist1 = [];
+    let type = event.currentTarget.dataset.producttype;
+    let dataArr = this.data.productList;
+    for (let i = 0; i < dataArr.length; i++) {
+      if (dataArr[i]['type'] == type){
+        dataArr[i]['isSelected'] = true;
+        currentProductist1 = dataArr[i]['foods'];
+      }
+      else{
+        dataArr[i]['isSelected'] = false;
+      }
+    }
+    this.setData({
+      productList: dataArr,
+      currentProductist: currentProductist1
+    });
+  },
   /**
    * 生命周期函数--监听页面显示
    */

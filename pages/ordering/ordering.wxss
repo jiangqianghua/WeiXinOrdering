@@ -1,84 +1,111 @@
-/* ordering.wxss */
-
-.orderingScrollView{
-
-}
-
-.orderingView{
-  flex-direction: row;
+.container{
+ 
+  width: 100%;
   display: flex;
+  flex-direction: column;
+  padding: 0rpx;
+  justify-content: space-between;
+  margin: 0rpx;
+
 }
+
+.productInfoTop{
+  width: 100%;
+  height: 1000rpx;
+  display: flex;
+  flex-direction: row;
+  margin: 10rpx;
+  padding: 0rpx;
+}
+
+.bottomTools{
+  width: 100%;
+  height: 100rpx;
+  background-color: #000;
+}
+
 
 .leftView{
-  width:120rpx;
-  height: 100%;
-  /*background-color:beige;*/
-}
-
-.rightview{
-  width:100%;
-  height: 100%;
-}
-
-.orderingfo{
   display:flex;
-  flex-direction: row;
-  /*background-color: sandybrown;*/
-
+  flex-direction: column;
+  width: 20%;
+  align-self: flex-start;
 }
-.orderingImage{
-  width:200rpx;
-  height:200rpx;
-  border: 0 solid #ff0000;
-  border-radius: 100rpx;
-}
-
-.middleinfo{
-  flex-direction:column;
+.productTypeNameView{
   display: flex;
-  margin: 0rpx;
-  /*background-color: rosybrown;*/
-  max-width: 300rpx;
-  width: 300rpx;
-}
-
-.mealName{
-  font-size: 30rpx;
-  padding-top: 0rpx;
-}
-.monthlyScalesNum{
-  font-size: 28rpx;
-}
-.onlineScaleNum{
-  font-size: 25rpx;
-}
-
-.orderingPriceView{
-  flex-direction:row;
-  display: flex;
-}
-
-.orderingRenjun{
-  font-size: 23rpx;
-}
-
-.orderingPrice{
-  font-size: 23rpx;
-  color: red;
-}
-
-.selectMealVie{
-  /*background-color:seagreen;*/
-  width: 150rpx;
-  height:200rpx;
-  right: 0rpx;
-  flex-direction: row;
-  display: flex;
+  height: 100rpx;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+.productTypeNameText{
+  font-size: 40rpx;
+}
 
-.blockView1,.blockView2{
-  width:30rpx;
+.line{
+  width: 100%;
+  height: 3rpx;
+  background-color: #cccccc;
+}
+
+
+.rightView{
+  align-self: flex-start;
+  width: 80%;
+  height: 100%;
+}
+
+.typeSelected{
+  background-color: #fff;
+}
+
+.typeUnSelected{
+  background-color: #f2f2f2;
+}
+
+.currentProductItem{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+}
+
+.currentProductItemIcon{
+  width: 200rpx;
+}
+
+.currentProductItemLeft{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-left: 10rpx;
+}
+
+.currentProductItemLeftName{
+  font-weight: bold;
+}
+.currentProductItemLeftDesc{
+  font-size:30rpx;
+  margin-top: 10rpx;
+  color: #cccccc;
+}
+
+.currentProductItemLeftOper{
+  margin-top: 10rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.currentProductItemLeftOperPrice{
+  color: #ff0000;
+}
+
+
+.addImage{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
 }
