@@ -2,7 +2,7 @@
 
 var util = require('../../utils/util.js');
 var app = getApp();
-var defaultIndex = 1 ;
+var defaultIndex = 0 ;
 Page({
 
   /**
@@ -19,21 +19,44 @@ Page({
   requestMealCallBack:function(data){
     console.log('requestMealCallBack ' + data);
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
- 
+
+    let _this = this ;
+    wx.getSystemInfo({
+      success: function (res) {
+        //设置map高度，根据当前设备宽高满屏显示
+        _this.setData({
+          view: {
+            height: res.windowHeight
+          }
+
+        })}});
+
+    let shopingCart1 = this.getShopCartCacheData();
+    if(shopingCart1 == undefined)
+      shopingCart1 = [];
+
+    let totalPrice1 = 0;
+    for(let i = 0 ; i < shopingCart1.length ; i++){
+      totalPrice1 += shopingCart1[i]['price'];
+    }
+    this.setData({
+      shoppingCart: shopingCart1,
+      totalPrice: totalPrice1
+    });
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    
     let that = this ;
     util.req(
-"http://192.168.1.102:8085/sell/buyer/product/list",
+"http://172.30.215.2:8085/sell/buyer/product/list",
       '',
       function (data) {
         //console.log(data);
@@ -81,56 +104,56 @@ Page({
     let shoppingCart1 = this.data.shoppingCart ;
     let currentProductist1 = this.data.currentProductist ;
     let totalPrice1 = this.data.totalPrice ;
-    for(let i = 0 ; i < currentProductist1.length ; i++){
-      if (produceId == currentProductist1[i]['id']){
-        if (this.isContainer(shoppingCart1, produceId)){
-          for(let j = 0 ;j < shoppingCart1.length ; j++){
-            if (shoppingCart1[j]['id'] == produceId){
-              shoppingCart1[j]['num']++;
-              shoppingCart1[j]['price'] += currentProductist1[i]['price'];
-              totalPrice1 += currentProductist1[i]['price'];
-              break;
-            }
-          }
+    if (this.isContainer(shoppingCart1, produceId)) {
+      for (let j = 0; j < shoppingCart1.length; j++) {
+        if (shoppingCart1[j]['id'] == produceId) {
+          shoppingCart1[j]['num']++;
+          totalPrice1 += shoppingCart1[j]['price'];
+          break;
         }
-        else{
-          shoppingCart1.push({ id: produceId, num: 1, name: currentProductist1[i]['name'], price: currentProductist1[i].price});
+      }
+    }else{
+      for (let i = 0; i < currentProductist1.length; i++) {
+        if (produceId == currentProductist1[i]['id']) {
+          shoppingCart1.push({ icon: currentProductist1[i]['icon'], id: produceId, num: 1, name: currentProductist1[i]['name'], price: currentProductist1[i].price });
           totalPrice1 += currentProductist1[i]['price'];
+          break;
         }
-        this.setData({
-          shoppingCart: shoppingCart1,
-          totalPrice: totalPrice1
-        });
-        break;
       }
     }
+
+    this.setData({
+      shoppingCart: shoppingCart1,
+      totalPrice: totalPrice1
+    });
+    this.saveShopCartCacheData();
   },
 
   bindTapReduc:function(event){
     let produceId = event.currentTarget.dataset.procudeid;
     let shoppingCart1 = this.data.shoppingCart;
-    let currentProductist1 = this.data.currentProductist;
+    //let currentProductist1 = this.data.currentProductist;
     let totalPrice1 = this.data.totalPrice;
-    for (let i = 0; i < currentProductist1.length; i++) {
-      if (produceId == currentProductist1[i]['id']) {
+    //for (let i = 0; i < currentProductist1.length; i++) {
+    //  if (produceId == currentProductist1[i]['id']) {
         if (this.isContainer(shoppingCart1, produceId)) {
           for (let j = 0; j < shoppingCart1.length; j++) {
             if (shoppingCart1[j]['id'] == produceId) {
               shoppingCart1[j]['num']--;
-              shoppingCart1[j]['price'] -= currentProductist1[i]['price'];
-              totalPrice1 -= currentProductist1[i]['price'];
+              totalPrice1 -= shoppingCart1[j]['price'];
               if (shoppingCart1[j]['num'] == 0)
                 shoppingCart1.splice(j,1);
               this.setData({
                 shoppingCart: shoppingCart1,
                 totalPrice: totalPrice1
               });
+              this.saveShopCartCacheData();
               break;
             }
           }
         }
-      }
-    }
+    //  }
+    //}
   },
 
   isContainer:function(arr,id){
@@ -141,6 +164,14 @@ Page({
     return false ;
   },
 
+  saveShopCartCacheData:function(){
+    util.cacheData("shopcart", this.data.shoppingCart);
+  },
+
+  getShopCartCacheData:function(){
+    let shopCart1 = util.getCacheData("shopcart");
+    return shopCart1 ;
+  },
   bindTapShopCart:function(e){
     if (this.data.isShopCart){
       this.setData({
@@ -158,7 +189,6 @@ Page({
   onShow: function () {
   
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */

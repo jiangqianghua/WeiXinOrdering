@@ -32,7 +32,24 @@ function req(url, data, cb, method = 'get') {
   })
 }
 
+var cacheData = function (key, data, cb) {
+  wx.setStorage({
+    key: key,
+    data: data,
+    success: function (res) { console.log(res) },
+    fail: function (res) { console.log(res) },
+    complete: function (res) { console.log(res) },
+  })
+}
+
+var getCacheDataSync = function(key){
+  return wx.getStorageSync(key);
+}
+
 module.exports = {
   formatTime: formatTime,
-  req: req
+  req: req,
+  cacheData:cacheData,
+  getCacheData: getCacheDataSync
 }
+

@@ -1,0 +1,4 @@
+<map id="map4select" longitude="{{longitude}}" latitude="{{latitude}}" controls="{{controls}}" bindcontroltap="controltap"  circles="{{circles}}" bindmarkertap="markertap" polyline="{{polyline}}" 
+scale="20"
+bindregionchange="regionchange" show-location style="width: {{map_width}}px; height: {{map_height}}px;">
+</map>

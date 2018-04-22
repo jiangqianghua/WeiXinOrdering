@@ -1,6 +1,9 @@
 {
   "pages": [
-        "pages/ordering/ordering",
+    "pages/map/map",
+    "pages/adduserinfo/adduserinfo",
+    "pages/ordering/ordering",
+    "pages/shopcart/shopcart",
     "pages/index/index",
     "pages/logs/logs",
     "pages/demo/demo",

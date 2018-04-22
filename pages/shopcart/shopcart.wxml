@@ -1,0 +1,21 @@
+<view class='container'>
+  <view class="shopCartView" wx:for="{{shopCart}}" wx:key="shopCart">
+    <image src='{{item.icon}}' class="icon" mode='widthFix'></image>
+    <view class="detailView">
+      <text>{{item.name}}</text>
+       <text>x{{item.num}}</text>
+    </view>
+    <view class="blackView">
+    </view>
+    <text class="priceText">
+      ¥{{item.price * item.num}}
+    </text>
+  </view>
+
+  <view class="addUserInfoView" bindtap='bindTapAddUserInfo'>
+    <image class="postionIcon" src='../../images/dingweiicon.png' mode='widthFix'></image>
+    <text class="userInfoText">添加收货地址</text>
+    <view class="blackView"></view>
+    <text class='addUserInfoText'>></text>
+  </view>
+</view>

@@ -6,13 +6,10 @@
   padding: 0rpx;
   justify-content: space-between;
   margin: 0rpx;
-  height: 1100rpx;
-
 }
 
 .productInfoTop{
   width: 100%;
-  height: 1000rpx;
   display: flex;
   flex-direction: row;
   margin: 10rpx;

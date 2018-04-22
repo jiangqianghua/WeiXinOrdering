@@ -1,5 +1,7 @@
-<view class="container">
-<view class="productInfoTop">
+<view class="container"
+style="height: {{view.height}}px;">
+<view class="productInfoTop"
+style="height: {{view.height}}px;">
   <view class="leftView">
     <view wx:key="productList" wx:for="{{productList}}">
       <view class="productTypeNameView {{item.isSelected?'typeSelected':'typeUnSelected'}}" bindtap='bindTapType' data-producttype="{{item.type}}" >
@@ -26,7 +28,7 @@
   <view class="{{isShopCart?'showShopCart':'hidenShopCart'}}">
     <view wx:key="shopCartKey" wx:for="{{shoppingCart}}" class="shopCartItem">
         <text>{{item.name}}</text>
-        <text>¥{{item.price}}</text>
+        <text>¥{{item.price * item.num}}</text>
         <view class="shopCartAddAndReduc">
           <image 
         class="reduceShopCartImage" src='../../images/redcu.png' bindtap='bindTapReduc' data-procudeid='{{item.id}}'></image>
