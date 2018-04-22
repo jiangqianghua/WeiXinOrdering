@@ -3,20 +3,22 @@ var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
 var qqmapsdk = new QQMapWX({
   key: 'ACLBZ-ZDZ63-I2T3G-YB2JM-HCZOS-S2FQU' // 必填
 });
+var that;
 var app = getApp();
 Page({
   data: {
     map_width: 380,
     map_height: 380,
     longitude: 0,
-    latitude: 0
+    latitude: 0,
+    mapName:'北京'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
+    that = this;
     //set the width and height
     // 动态设置map的宽和高
     wx.getSystemInfo({
@@ -30,8 +32,8 @@ Page({
             id: 1,
             iconPath: '../../images/mappostion.png',
             position: {
-              left: res.windowWidth / 2 - 8,
-              top: res.windowWidth / 2 - 16,
+              left: res.windowWidth / 2 - 15,
+              top: res.windowWidth / 2 - 25,
               width: 30,
               height: 30
             },
@@ -83,7 +85,9 @@ Page({
       },
       success: function (addressRes) {
         var address = addressRes.result.formatted_addresses.recommend;
-        console.log(address);
+        that.setData({
+          mapName: address
+        });
       }
     })
   },
@@ -118,6 +122,19 @@ Page({
 
       }
     })
+  },
+
+  selectAddress:function(e){
+    let address = e.currentTarget.dataset.address ;
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];  //当前页面
+    var prevPage = pages[pages.length - 2]; //上一个页面
+
+    //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
+    prevPage.setData({
+      address: address
+    });
+    wx.navigateBack();
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

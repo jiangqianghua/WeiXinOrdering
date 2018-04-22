@@ -6,13 +6,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    shopCart: []
+    shopCart: [],
+    // userInfo:{name:'jiang',phone:'15801523721',address:'北京公益西桥'}
+    userInfo:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 从缓存中获取地址列表
+    let userInfolist = wx.getStorageSync("myaddress");
+    if (userInfolist != undefined && userInfolist.length > 0){
+      let userInfo1 = userInfolist[0];
+      this.setData({
+        userInfo:userInfo1
+      });
+  }
     // 加载shopCart缓存数据
     let shopCart1 = this.getShopCartCacheData();
     if (shopCart1 == undefined)
@@ -27,7 +37,7 @@ Page({
   },
 
   bindTapAddUserInfo:function(e){
-    wx.navigateTo({url:"../adduserinfo/adduserinfo"}) ;
+    wx.navigateTo({ url:"../myaddress/myaddress"}) ;
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

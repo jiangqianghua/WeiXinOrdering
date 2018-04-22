@@ -41,7 +41,7 @@ Page({
 
     let totalPrice1 = 0;
     for(let i = 0 ; i < shopingCart1.length ; i++){
-      totalPrice1 += shopingCart1[i]['price'];
+      totalPrice1 += shopingCart1[i]['price'] * shopingCart1[i]['num'];
     }
     this.setData({
       shoppingCart: shopingCart1,
@@ -182,6 +182,12 @@ Page({
         isShopCart: true
       });
     }
+  },
+
+  bindTapSettlementBtn:function(e){
+    wx.navigateTo({
+      url: '../shopcart/shopcart'
+    })
   },
   /**
    * 生命周期函数--监听页面显示

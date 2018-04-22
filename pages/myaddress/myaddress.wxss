@@ -1,0 +1,27 @@
+/* pages/myaddress/myaddress.wxss */
+.container{
+  width: 100%;
+  margin: 0rpx;
+  padding: 20rpx;
+  align-items: flex-start;
+}
+
+.userInfoView{
+  display: flex;
+  flex-direction: column;
+  border-bottom:1px solid #f2f2f2;
+  padding: 30rpx;
+  width: 90%;
+}
+
+.nameAndPhone{
+  font-size: 50rpx;
+}
+.address{
+  margin-top: 20rpx;
+  color: #cccccc;
+}
+
+.addAddressBtn{
+  margin-top: 30rpx;
+}

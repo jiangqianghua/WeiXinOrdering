@@ -52,7 +52,8 @@
 .userInfoText{
   width: 400rpx;
   margin-right: 10rp;
-  margin-left: 10rpx;
+  margin-left: 50rpx;
+
 }
 
 .addUserInfoText{
@@ -60,4 +61,35 @@
 }
 .postionIcon{
   width: 50rpx;
+}
+
+
+.userInfoView{
+   margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx;
+  background-color: #fff;
+}
+
+.userDetailView{
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx;
+  margin-left: 50rpx;
+}
+
+.nameAndPhone{
+  
+}
+
+.address{
+  margin-top: 20rpx;
+}
+
+.hiden{
+  display: none;
 }

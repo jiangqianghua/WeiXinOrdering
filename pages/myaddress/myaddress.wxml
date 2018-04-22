@@ -1,0 +1,9 @@
+<view class="container">
+  <view wx:for="{{myAddress}}" wx:key="myAddress" class="userInfoView" bindtap='bindTapUserInfo' data-index='{{index}}'>
+    
+        <text class="nameAndPhone">{{item.name+","+item.phone}}</text>
+        <text class="address">{{item.address}}</text>
+  </view>
+
+  <button class="addAddressBtn" bindtap='addAddressBindTap' type='primary'>添加</button>
+</view>

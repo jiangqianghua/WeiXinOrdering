@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="inputView">
+    <text class="labelText">姓名</text>
+    <input  class="input" 
+    bindinput='nameBindInput'></input>
+  </view>
+
+  <view class="inputView">
+    <text class="labelText">手机</text>
+    <input class="input" type="number" bindinput='phoneBindInput'></input>
+  </view>
+
+  <view class="inputView address">
+    <text class="labelText">地址</text>
+    <input  class="input" bindinput='addressBindInput' value="{{address}}"></input>
+    <image class="mappostion" src='../../images/mappostion.png' mode='widthFix'
+    bindtap='bindTapMappostion'></image>
+  </view>
+
+  <button class="addUserInfoBtn" bindtap='addUserInfoBindTap' type="primary">添加</button>
+</view>

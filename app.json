@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/map/map",
-    "pages/adduserinfo/adduserinfo",
     "pages/ordering/ordering",
+    "pages/adduserinfo/adduserinfo",
+    "pages/map/map",
     "pages/shopcart/shopcart",
     "pages/index/index",
     "pages/logs/logs",
     "pages/demo/demo",
     "pages/order/order",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/myaddress/myaddress"
   ],
   "window": {
     "backgroundTextStyle": "light",

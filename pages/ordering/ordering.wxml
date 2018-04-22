@@ -40,6 +40,6 @@ style="height: {{view.height}}px;">
   <view class="bottomTools">
     <image  class="gouwucheImage" src='../../images/gouwuche.png' bindtap='bindTapShopCart'></image>
     <text class="priceText">¥{{totalPrice}}</text>
-    <button class="settlementBtn">去结算</button>
+    <button class="settlementBtn" bindtap='bindTapSettlementBtn'>去结算</button>
   </view>
 </view>

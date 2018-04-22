@@ -12,9 +12,20 @@
     </text>
   </view>
 
-  <view class="addUserInfoView" bindtap='bindTapAddUserInfo'>
+  <view class="{{userInfo.name.length>0?'hiden':'addUserInfoView'}}" bindtap='bindTapAddUserInfo'>
     <image class="postionIcon" src='../../images/dingweiicon.png' mode='widthFix'></image>
     <text class="userInfoText">添加收货地址</text>
+    <view class="blackView"></view>
+    <text class='addUserInfoText'>></text>
+  </view>
+
+    <view class="{{userInfo.name.length>0?'userInfoView':'hiden'}}" bindtap='bindTapAddUserInfo'>
+    <image class="postionIcon" src='../../images/dingweiicon.png' mode='widthFix'></image>
+    <view class="userDetailView">
+      <text class="nameAndPhone">{{userInfo.name+"      "+userInfo.phone}}</text>
+      <text class="address">{{userInfo.address}}</text>
+    </view>
+    
     <view class="blackView"></view>
     <text class='addUserInfoText'>></text>
   </view>
