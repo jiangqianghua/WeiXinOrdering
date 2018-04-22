@@ -11,7 +11,10 @@ Page({
   data: {
   
     productList:[],
-    currentProductist:[]
+    currentProductist:[],
+    totalPrice:0,
+    shoppingCart:[],
+    isShopCart:false
   },
   requestMealCallBack:function(data){
     console.log('requestMealCallBack ' + data);
@@ -71,6 +74,83 @@ Page({
       productList: dataArr,
       currentProductist: currentProductist1
     });
+  },
+
+  bindTapAdd:function(event){
+    let produceId = event.currentTarget.dataset.procudeid;
+    let shoppingCart1 = this.data.shoppingCart ;
+    let currentProductist1 = this.data.currentProductist ;
+    let totalPrice1 = this.data.totalPrice ;
+    for(let i = 0 ; i < currentProductist1.length ; i++){
+      if (produceId == currentProductist1[i]['id']){
+        if (this.isContainer(shoppingCart1, produceId)){
+          for(let j = 0 ;j < shoppingCart1.length ; j++){
+            if (shoppingCart1[j]['id'] == produceId){
+              shoppingCart1[j]['num']++;
+              shoppingCart1[j]['price'] += currentProductist1[i]['price'];
+              totalPrice1 += currentProductist1[i]['price'];
+              break;
+            }
+          }
+        }
+        else{
+          shoppingCart1.push({ id: produceId, num: 1, name: currentProductist1[i]['name'], price: currentProductist1[i].price});
+          totalPrice1 += currentProductist1[i]['price'];
+        }
+        this.setData({
+          shoppingCart: shoppingCart1,
+          totalPrice: totalPrice1
+        });
+        break;
+      }
+    }
+  },
+
+  bindTapReduc:function(event){
+    let produceId = event.currentTarget.dataset.procudeid;
+    let shoppingCart1 = this.data.shoppingCart;
+    let currentProductist1 = this.data.currentProductist;
+    let totalPrice1 = this.data.totalPrice;
+    for (let i = 0; i < currentProductist1.length; i++) {
+      if (produceId == currentProductist1[i]['id']) {
+        if (this.isContainer(shoppingCart1, produceId)) {
+          for (let j = 0; j < shoppingCart1.length; j++) {
+            if (shoppingCart1[j]['id'] == produceId) {
+              shoppingCart1[j]['num']--;
+              shoppingCart1[j]['price'] -= currentProductist1[i]['price'];
+              totalPrice1 -= currentProductist1[i]['price'];
+              if (shoppingCart1[j]['num'] == 0)
+                shoppingCart1.splice(j,1);
+              this.setData({
+                shoppingCart: shoppingCart1,
+                totalPrice: totalPrice1
+              });
+              break;
+            }
+          }
+        }
+      }
+    }
+  },
+
+  isContainer:function(arr,id){
+    for(let k = 0 ; k < arr.length ; k++){
+      if(arr[k]['id'] == id)
+        return true ;
+    }
+    return false ;
+  },
+
+  bindTapShopCart:function(e){
+    if (this.data.isShopCart){
+      this.setData({
+        isShopCart:false
+      });
+    }else{
+      this.setData({
+        isShopCart: true
+      });
+    }
   },
   /**
    * 生命周期函数--监听页面显示

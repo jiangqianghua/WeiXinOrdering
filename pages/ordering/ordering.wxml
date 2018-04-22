@@ -10,18 +10,34 @@
   </view>
   <scroll-view class="rightView" scroll-y>
     <view wx:for="{{currentProductist}}" wx:key="currentProductist" class="currentProductItem">
-      <image src='{{item.icon}}' class="currentProductItemIcon" mode="widthFix"></image>
+      <image src='{{item.icon}}' class="currentProductItemIcon" mode="widthFix" ></image>
       <view class="currentProductItemLeft"> 
       <text class="currentProductItemLeftName">{{item.name}}</text>
       <text class="currentProductItemLeftDesc">{{item.description}}</text>
       <view class="currentProductItemLeftOper">
         <text class="currentProductItemLeftOperPrice">¥{{item.price}}
         </text>
-        <image class="addImage" src="../../images/add.png"></image>
+        <image class="addImage" src="../../images/add.png" bindtap='bindTapAdd' data-procudeid='{{item.id}}'></image>
       </view>
       </view>
     </view>
   </scroll-view>
   </view>
-  <view class="bottomTools"></view>
+  <view class="{{isShopCart?'showShopCart':'hidenShopCart'}}">
+    <view wx:key="shopCartKey" wx:for="{{shoppingCart}}" class="shopCartItem">
+        <text>{{item.name}}</text>
+        <text>¥{{item.price}}</text>
+        <view class="shopCartAddAndReduc">
+          <image 
+        class="reduceShopCartImage" src='../../images/redcu.png' bindtap='bindTapReduc' data-procudeid='{{item.id}}'></image>
+          <text>{{item.num}}</text>
+          <image class="addShopCartImage" src="../../images/add.png" bindtap='bindTapAdd' data-procudeid='{{item.id}}'></image>
+        </view>
+      </view>
+  </view>
+  <view class="bottomTools">
+    <image  class="gouwucheImage" src='../../images/gouwuche.png' bindtap='bindTapShopCart'></image>
+    <text class="priceText">¥{{totalPrice}}</text>
+    <button class="settlementBtn">去结算</button>
+  </view>
 </view>
